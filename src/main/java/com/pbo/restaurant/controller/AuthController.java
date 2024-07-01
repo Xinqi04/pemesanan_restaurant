@@ -74,4 +74,9 @@ public class AuthController {
     public String login() {
         return "login";
     }
+
+    @PostMapping("/login")
+    public String performLogin() {
+        return "redirect:/products";
+    }
 }
