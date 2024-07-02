@@ -44,7 +44,7 @@ public class ProductController {
     }
 
     // Menampilkan form untuk membuat produk baru
-    @GetMapping("/new")
+    @GetMapping("/buat")
     public String showCreateProductForm(Model model) {
         Product product = new Product();
         List<Category> categories = categoryService.findAllCategories();
@@ -62,14 +62,24 @@ public class ProductController {
             try {
                 String fileName = StringUtils.cleanPath(Objects.requireNonNull(imageFile.getOriginalFilename()));
                 Path uploadPath = Paths.get(uploadDir);
-                Files.copy(imageFile.getInputStream(), uploadPath.resolve(fileName),
-                        StandardCopyOption.REPLACE_EXISTING);
-                product.setImageUrl("uploads/" + fileName); // Simpan path relatif ke dalam entitas produk
+
+                // Memastikan direktori upload ada, jika tidak, buat direktori
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
+                }
+
+                // Copy file ke direktori upload
+                try (InputStream inputStream = imageFile.getInputStream()) {
+                    Path filePath = uploadPath.resolve(fileName);
+                    Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+                    product.setImageUrl("/uploads/" + fileName); // Simpan path relatif ke dalam entitas produk
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
         productService.saveProduct(product);
         return "redirect:/products";
     }
