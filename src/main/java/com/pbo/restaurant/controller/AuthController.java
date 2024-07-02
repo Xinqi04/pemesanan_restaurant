@@ -2,6 +2,7 @@ package com.pbo.restaurant.controller;
 
 import jakarta.validation.Valid;
 import com.pbo.restaurant.dto.UserDto;
+import com.pbo.restaurant.entity.Product;
 import com.pbo.restaurant.entity.User;
 import com.pbo.restaurant.service.UserService;
 import com.pbo.restaurant.service.UserServiceImpl;
@@ -13,22 +14,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.pbo.restaurant.service.CategoryService;
+import com.pbo.restaurant.service.ProductService;
+
 import java.util.List;
 
 @SuppressWarnings("unused")
 @Controller
 public class AuthController {
     private UserService userService;
+    private ProductService productService;
+    private CategoryService categoryService;
 
     @Autowired
-    public void setUserService(UserService userService) {
+    public void setUserService(UserService userService, ProductService productService,
+            CategoryService categoryService) {
         this.userService = userService;
+        this.productService = productService;
+        this.categoryService = categoryService;
     }
 
-    // handler method to handle home page request
-    @GetMapping("/index")
-    public String home() {
-        return "index";
+    // handler method to handle home page reques
+    @GetMapping("/")
+    public String listProducts(Model model) {
+        List<Product> products = productService.findAllProducts();
+        model.addAttribute("products", products);
+        return "index"; // Sesuaikan dengan nama template Thymeleaf yang Anda gunakan
     }
 
     // handler method to handle user registration form request

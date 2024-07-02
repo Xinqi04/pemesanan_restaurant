@@ -50,14 +50,16 @@
         vertical-align: middle;
       }
 
+      .content {
+        padding-bottom: 60px; /* Tambahkan padding di bawah konten agar tidak terlalu mepet dengan footer */
+      }
+
       footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
         background-color: rgba(235, 165, 176, 1);
         text-align: center;
         padding: 10px 0;
         color: rgb(253, 250, 252);
+        margin-top: 20px; /* Tambahkan margin di atas footer */
       }
     </style>
   </head>
@@ -82,7 +84,7 @@
       </nav>
     </header>
     <br />
-    <div class="container">
+    <div class="container content">
       <h3
         class="text-center"
         style="
@@ -125,15 +127,15 @@
             <td>
               <a
                 th:href="@{'/products/edit/' + ${product.id}}"
-                class="btn btn-primary btn-sm"
+                class="btn btn-light custom-btn"
                 role="button"
                 >Edit</a
               >
               <a
                 th:href="@{'/products/delete/' + ${product.id}}"
-                class="btn btn-danger btn-sm"
+                class="btn btn-light custom-btn"
                 role="button"
-                onclick="return confirm('Are you sure?')"
+                onclick="return confirm('Are You Sure?')"
                 >Delete</a
               >
             </td>
