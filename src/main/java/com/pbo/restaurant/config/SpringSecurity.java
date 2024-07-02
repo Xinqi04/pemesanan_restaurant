@@ -29,7 +29,7 @@ public class SpringSecurity {
                                 .authorizeHttpRequests(
                                                 (authorize) -> authorize
                                                                 .requestMatchers("/register/**", "/uploads/**",
-                                                                                "/css/**", "/index")
+                                                                                "/css/**", "/index", "/assets/**")
                                                                 .permitAll().anyRequest().authenticated())
                                 .formLogin(
                                                 form -> form

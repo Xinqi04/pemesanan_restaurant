@@ -2,6 +2,89 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Edit Product</title>
+    <style>
+      body {
+        background-image: url("/assets/adminlogin2.webp");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+        color: #c2185b; /* Pink color for heading */
+        margin-top: 20px;
+      }
+
+      form {
+        width: 400px;
+        margin: 0 auto;
+        background: #ffffff; /* White background */
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      form div {
+        margin-bottom: 15px;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #c2185b; /* Pink color for labels */
+      }
+
+      form input[type="text"],
+      form textarea,
+      form select,
+      form input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #e91e63; /* Dark pink border */
+        border-radius: 4px;
+        color: #333; /* Dark text color */
+      }
+
+      form textarea {
+        resize: vertical;
+      }
+
+      form button {
+        width: 100%;
+        padding: 10px;
+        background: #e91e63; /* Dark pink button background */
+        color: #fff; /* White text color */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      form button:hover {
+        background: #c2185b; /* Light pink button background on hover */
+      }
+
+      form img {
+        display: block;
+        margin-top: 10px;
+        max-width: 100%;
+        border-radius: 4px;
+      }
+
+      .image-container {
+        text-align: center;
+      }
+
+      .image-container img {
+        display: inline-block;
+      }
+    </style>
   </head>
   <body>
     <h1>Edit Product</h1>
@@ -38,10 +121,10 @@
         <input type="file" id="image" name="image" accept="image/*" />
       </div>
       <!-- Show current image if exists -->
-      <div th:if="${product.imageUrl}">
+      <div class="image-container" th:if="${product.imageUrl}">
         <label>Current Image:</label>
         <img
-          th:src="@{/uploads/{fileName}(fileName=${product.imageUrl})}"
+          th:src="@{${product.imageUrl}}"
           style="max-width: 200px; max-height: 200px"
         />
       </div>
