@@ -28,8 +28,8 @@ public class SpringSecurity {
                 http.csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(
                                                 (authorize) -> authorize
-                                                                .requestMatchers("/").permitAll()
-                                                                .requestMatchers("/register/**", "/uploads/**",
+                                                                .requestMatchers("/", "/register/**").permitAll()
+                                                                .requestMatchers("/uploads/**",
                                                                                 "/css/**", "/assets/**")
                                                                 .permitAll().anyRequest().authenticated())
                                 .formLogin(

@@ -44,8 +44,6 @@
 
         .custom-btn {
           color: rgba(235, 165, 176, 0.9) !important;
-          background-color: transparent;
-          border-color: transparent;
         }
 
         .custom-btn:hover {
@@ -75,6 +73,11 @@
         }
 
         .product-description {
+          text-align: center;
+          color: #fff;
+        }
+
+        .product-price {
           text-align: center;
           color: #fff;
         }
@@ -136,7 +139,7 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <button
-                class="btn btn-primary custom-btn"
+                class="btn btn-light custom-btn"
                 onclick="window.location.href='login.jsp'"
               >
                 Login
@@ -171,7 +174,9 @@
               <p class="product-description" th:text="${product.description}">
                 Product Description
               </p>
-              <p th:text="'Rp.' + ${product.price}">Product Price</p>
+              <p class="product-price" th:text="'Rp.' + ${product.price}">
+                Product Price
+              </p>
             </div>
           </div>
         </div>
@@ -193,7 +198,9 @@
               <p class="product-description" th:text="${product.description}">
                 Drink Description
               </p>
-              <p th:text="'Rp.' + ${product.price}">Drink Price</p>
+              <p class="product-price" th:text="'Rp.' + ${product.price}">
+                Drink Price
+              </p>
             </div>
           </div>
         </div>
@@ -217,7 +224,9 @@
               <p class="product-description" th:text="${product.description}">
                 Dessert Description
               </p>
-              <p th:text="'Rp.' + ${product.price}">Dessert Price</p>
+              <p class="product-price" th:text="'Rp.' + ${product.price}">
+                Dessert Price
+              </p>
             </div>
           </div>
         </div>
